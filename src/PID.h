@@ -2,7 +2,11 @@
 #define PID_H
 
 class PID {
+  double prev_cte;
+  double int_cte;
 public:
+  unsigned iteration;
+  double err2;
   /*
   * Errors
   */
