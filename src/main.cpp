@@ -34,15 +34,25 @@ int main(int argc, char **argv)
 
   PID pid;
   {
-      double Kp = atof(argv[1]);
-      double Ki = atof(argv[2]);
-      double Kd = atof(argv[3]);
-      pid.Init(Kp, Ki, Kd);
+      if (argc == 4)
+      {
+          double Kp = atof(argv[1]);
+          double Ki = atof(argv[2]);
+          double Kd = atof(argv[3]);
+          pid.Init(Kp, Ki, Kd);
+      }
+      else
+      {
+          double Kp = 0.2;
+          double Ki = 0.0008;
+          double Kd = 5;
+          pid.Init(Kp, Ki, Kd);
+      }
   }
 
   PID pid_throttle;
   {
-      double Kp = 1.0;
+      double Kp = 1.;
       double Ki = 0.;
       double Kd = 0.;
       pid_throttle.Init(Kp, Ki, Kd);
@@ -61,8 +71,8 @@ int main(int argc, char **argv)
         if (event == "telemetry") {
           // j[1] is the data JSON object
           double cte = std::stod(j[1]["cte"].get<std::string>());
-          double speed = std::stod(j[1]["speed"].get<std::string>());
-          double angle = std::stod(j[1]["steering_angle"].get<std::string>());
+          //double speed = std::stod(j[1]["speed"].get<std::string>());
+          //double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
           /*
           * TODO: Calcuate steering value here, remember the steering value is
