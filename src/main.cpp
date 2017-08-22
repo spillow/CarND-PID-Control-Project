@@ -50,6 +50,8 @@ int main(int argc, char **argv)
       }
   }
 
+  // Use a simple proportional controller to
+  // control the throttle based on the steering wheel angle.
   PID pid_throttle;
   {
       double Kp = 1.;
